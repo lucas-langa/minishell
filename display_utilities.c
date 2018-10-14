@@ -1,30 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   display_utilities.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llanga <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/14 08:05:41 by llanga            #+#    #+#             */
+/*   Updated: 2018/10/14 08:05:45 by llanga           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-void        disp(char *str)
+void	disp(char *str)
 {
 	if (str)
 		ft_putendl(str);
 }
 
-t_list      *mk_envcpy(char **env)
-{
-	int i;
-	t_list *head;
-	t_list *node;
-
-	i = 0;
-	head = NULL;
-	node = NULL;
-	while (env[i] != NULL)
-	{
-		node = ft_lstnew(env[i]);
-		ft_lstadd(&head, node);
-		i++;
-	}
-	return (head);
-}
-
-void    ft_strarrayiter(char **arr, void(*dsp)(char *str))
+void	ft_strarrayiter(char **arr, void (*dsp)(char *str))
 {
 	int i;
 
@@ -36,7 +30,7 @@ void    ft_strarrayiter(char **arr, void(*dsp)(char *str))
 			dsp(arr[i]);
 			i++;
 		}
-	}    
+	}
 	return ;
 }
 

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   arr_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llanga <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/13 18:25:38 by llanga            #+#    #+#             */
+/*   Updated: 2018/10/13 18:25:49 by llanga           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int 	get_2darr_len(char **arr2d)
+int		get_2darr_len(char **arr2d)
 {
 	int i;
 
@@ -15,17 +27,17 @@ int 	get_2darr_len(char **arr2d)
 	return (i);
 }
 
-char 	**cpy_2darr(char **src)
+char	**cpy_2darr(char **src)
 {
-	int len;
-	int i;
-	char **dst_env;
+	int		len;
+	int		i;
+	char	**dst_env;
 
 	dst_env = NULL;
 	i = 0;
 	if ((len = get_2darr_len(src)) > 0)
 	{
-		if (!(dst_env = (char**)malloc((len + 1) * sizeof(char*))))
+		if (!(dst_env = (char **)malloc((len + 1) * sizeof(char *))))
 			return (dst_env);
 		while (src[i] != NULL)
 		{
@@ -37,13 +49,13 @@ char 	**cpy_2darr(char **src)
 	return (dst_env);
 }
 
-void    mk_2D_arr_clean(char ***arr)
+void	mk_2d_arr_clean(char ***arr)
 {
 	int i;
 
 	i = 0;
- 	if (!arr || !*arr)
-	 	return ;
+	if (!arr || !*arr)
+		return ;
 	while ((*arr)[i])
 	{
 		ft_strdel(&(*arr)[i]);
@@ -54,12 +66,12 @@ void    mk_2D_arr_clean(char ***arr)
 	return ;
 }
 
-char 	**gimme_2darr_space(int size)
+char	**gimme_2darr_space(int size)
 {
 	char **new;
 
 	new = NULL;
-	if (!(new = (char**)malloc(size * sizeof(char*))))
-		return (NULL);	
+	if (!(new = (char **)malloc(size * sizeof(char *))))
+		return (NULL);
 	return (new);
 }

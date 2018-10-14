@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   manipulate_env.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llanga <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/14 08:05:57 by llanga            #+#    #+#             */
+/*   Updated: 2018/10/14 08:05:59 by llanga           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int 	get_env(char **envcpy, char *key)
+int		get_env(char **envcpy, char *key)
 {
 	int i;
 
@@ -14,12 +26,11 @@ int 	get_env(char **envcpy, char *key)
 	return (-1);
 }
 
-int 	find_item(char **arr2d, char **item)
+int		find_item(char **arr2d, char **item)
 {
-	int i;
-	char *temp;
-	int index;
-
+	int		i;
+	char	*temp;
+	int		index;
 
 	temp = NULL;
 	i = 0;
@@ -27,22 +38,17 @@ int 	find_item(char **arr2d, char **item)
 		temp = ft_strsub(item[1], 0, index);
 	else
 		temp = ft_strdup(item[1]);
-	while (arr2d[i])
-	{
-		if (ft_strncmp(arr2d[i], temp, ft_strlen(temp)) == 0)
-			return (i);
-		i++;
-		
-	}
-	return (-1);
+	i = get_env(arr2d, temp);
+	ft_strdel(&temp);
+	return (i);
 }
 
-void 	format_var(char ***env, char **item)
+void	append_var(char ***env, char **item)
 {
-	char **new;
-	int j;
-	int i;
-	char *temp;
+	char	**new;
+	int		j;
+	int		i;
+	char	*temp;
 
 	temp = NULL;
 	new = NULL;
@@ -57,11 +63,12 @@ void 	format_var(char ***env, char **item)
 	{
 		temp = ft_strjoin(item[1], "=");
 		new[i++] = ft_strjoin(temp, item[2]);
-		ft_strdel(&temp);		 
+		ft_strdel(&temp);
 	}
 	new[i] = NULL;
-	mk_2D_arr_clean(env);
+	mk_2d_arr_clean(env);
 	*env = new;
+	return ;
 }
 
 void	add_2d_arr_str(char ***env, char **item)
@@ -81,25 +88,26 @@ void	add_2d_arr_str(char ***env, char **item)
 			(*env)[i] = ft_strjoin(temp, item[2]);
 			ft_strdel(&temp);
 		}
+		return ;
 	}
 	else
-		format_var(env, item);
+		append_var(env, item);
 	return ;
 }
 
-void 	rm_2d_arr_str(char ***old, char *item)
+void	rm_2d_arr_str(char ***old, char *item)
 {
-	char **new;
-	int new_len;
-	int j;
-	int i;
+	char	**new;
+	int		new_len;
+	int		j;
+	int		i;
 
 	new_len = 0;
 	i = 0;
 	j = 0;
 	new = NULL;
 	if ((new_len = get_2darr_len(*old)) > 0)
-		if (!(new = (char**)malloc((new_len) * sizeof(char*))))
+		if (!(new = (char **)malloc((new_len) * sizeof(char *))))
 			return ;
 	if (get_env(*old, item) == -1)
 		return ;
@@ -111,6 +119,7 @@ void 	rm_2d_arr_str(char ***old, char *item)
 			new[j++] = ft_strdup((*old)[i++]);
 	}
 	new[j] = NULL;
-	mk_2D_arr_clean(old);
+	mk_2d_arr_clean(old);
 	*old = new;
+	return ;
 }
