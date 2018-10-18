@@ -1,2 +1,2 @@
 # minishell
-creating a shell, at least a super basic shell
+creating a shell script, at least a super basic shell script.
