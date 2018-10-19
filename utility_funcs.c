@@ -24,7 +24,7 @@ char	*run_exe(char **env, char *exe)
 	path = NULL;
 	if ((i = get_env(env, "PATH")) == -1)
 		return (NULL);
-	path = ft_strsplit(env[i], ':');
+	path = ft_strsplit((ft_strchr(env[i], '=') + 1), ':');
 	i = 0;
 	while (path[i])
 	{
@@ -78,13 +78,13 @@ int		exec_sh_fun(char **av, char ***envcpy)
 		xecute = run_exe(*envcpy, av[0]);
 		fork_this(xecute, av, *envcpy);
 	}
-	else if (!ft_strcmp("pwd", av[0]))
+	else
 	{
 		xecute = run_exe(*envcpy, av[0]);
 		fork_this(xecute, av, *envcpy);
 	}
-	else
-		ft_putendl_fd("\033[31mno such command\033[0m", 2);
+	// else
+	// 	ft_putendl_fd("\033[31mno such command\033[0m", 2);
 	xecute ? ft_strdel(&xecute) : 0;
 	return (42);
 }
