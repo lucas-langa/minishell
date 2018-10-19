@@ -35,6 +35,7 @@ char			*ft_strtrim(char const *s)
 			j--;
 		if (j == 0)
 			return (ft_strdup(""));
+		return (ft_strsub((char*)s, i, (j - i)));
 	}
-	return (ft_strsub((char*)s, i, (j - i)));
+	return (NULL);
 }

@@ -19,7 +19,7 @@
 # include <stdarg.h>
 # include <inttypes.h>
 # define ABS(x) ((x < 0) ? -(x) : (x))
-#define BUFF_SIZE 1
+# define BUFF_SIZE 1
 
 typedef	struct	s_flist
 {
@@ -38,7 +38,7 @@ typedef	struct	s_flist
 
 typedef struct		s_list
 {
-	char 			*content;
+	char			*content;
 	struct s_list 	*next;
 }					t_list;
 
@@ -65,13 +65,9 @@ int		ft_ptrhandle(t_flist *lst, void *n);
 int		ft_output(t_flist *lst, va_list va);
 
 
-void 	ft_lstadd(t_list **node, t_list *new);
-// void	ft_lstdel(t_list **node, void (*del)(void *, size_t));
-// void	ft_del(void *content, size_t content_size);
+void	ft_lstadd(t_list **node, t_list *new);
 t_list	*ft_lstnew(char *content);
-// void	ft_lstdelone(t_list **alst, void (*del)(void*, size_t)); 
-
-int  	ft_lindexof(char *str, char c);
+int		ft_lindexof(char *str, char c);
 int		ft_indexof(char *str, char c);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlen(const char *s);

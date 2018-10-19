@@ -41,7 +41,7 @@ int		get_env(char **envcpy, char *key);
 void	add_2d_arr_str(char ***env, char **item);
 void	rm_2d_arr_str(char ***old, char *item);
 void	mk_2d_arr_clean(char ***arr);
-void	exec_sh_fun(char **av, char ***envcpy);
+int		exec_sh_fun(char **av, char ***envcpy);
 char	**get_args(void);
 int		just_find_item(char **arr2d, char *item);
 int		find_item(char **arr2d, char **item);

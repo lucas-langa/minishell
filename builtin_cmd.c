@@ -33,6 +33,6 @@ int		exec_builtin(char **av, char ***envcpy)
 	else if (!ft_strcmp(av[0], "cd"))
 		cd_fun(envcpy, av[1]);
 	else
-		exec_sh_fun(av, envcpy);
+		return (exec_sh_fun(av, envcpy));
 	return (42);
 }

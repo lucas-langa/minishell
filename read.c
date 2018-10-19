@@ -39,10 +39,10 @@ int				main(int ac, char **av, char **env)
 	signal(SIGINT, &xsig_handler);
 	while (run)
 	{
-		g_xx = 1;
-		if (!g_xx)
-			continue ;
-		if (g_xx)
+		// g_xx = 1;
+		// if (g_xx == 0)
+		// 	continue ;
+		// if (g_xx)
 			ft_putstr("$> ");
 		args = get_args();
 		run = exec_builtin(args, &envcp);

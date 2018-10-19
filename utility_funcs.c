@@ -63,7 +63,7 @@ void	fork_this(char *exe, char **av, char **envcpy)
 	return ;
 }
 
-void	exec_sh_fun(char **av, char ***envcpy)
+int		exec_sh_fun(char **av, char ***envcpy)
 {
 	char *xecute;
 
@@ -78,7 +78,7 @@ void	exec_sh_fun(char **av, char ***envcpy)
 		xecute = run_exe(*envcpy, av[0]);
 		fork_this(xecute, av, *envcpy);
 	}
-	else if (!ft_strcmp("PWD", av[0]))
+	else if (!ft_strcmp("pwd", av[0]))
 	{
 		xecute = run_exe(*envcpy, av[0]);
 		fork_this(xecute, av, *envcpy);
@@ -86,7 +86,7 @@ void	exec_sh_fun(char **av, char ***envcpy)
 	else
 		ft_putendl_fd("\033[31mno such command\033[0m", 2);
 	xecute ? ft_strdel(&xecute) : 0;
-	return ;
+	return (42);
 }
 
 char	**get_args(void)

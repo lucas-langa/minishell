@@ -75,7 +75,7 @@ void	echo_f(char **av)
 	int i;
 
 	i = 1;
-	while (av[1][i] != '"')
+	while (av[1][i] && av[1][i] != '"')
 		ft_putchar(av[1][i++]);
 	return (ft_putchar('\n'));
 }

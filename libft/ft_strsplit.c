@@ -31,7 +31,7 @@ static int			word_ctr(char const *str, char c)
 	return (word);
 }
 
-static char			**mk_wrd_array(char const *s, char **wrds_hold, char c)
+static char			**mk_wrd_array(char const *s, char ***wrds_hold, char c)
 {
 	int i;
 	int j;
@@ -49,12 +49,12 @@ static char			**mk_wrd_array(char const *s, char **wrds_hold, char c)
 			k = i;
 			while ((s[i] != c) && (s[i] != '\0'))
 				i++;
-			wrds_hold[j] = ft_strsub(s, k, (i - k));
+			(*wrds_hold)[j] = ft_strsub(s, k, (i - k));
 			j++;
 		}
 	}
-	wrds_hold[j] = NULL;
-	return (wrds_hold);
+	(*wrds_hold)[j] = NULL;
+	return (*wrds_hold);
 }
 
 char				**ft_strsplit(char const *s, char c)
@@ -69,7 +69,7 @@ char				**ft_strsplit(char const *s, char c)
 		if (!(strs_array = (char**)malloc((1 + wrds) * sizeof(char*))))
 			return (NULL);
 		else
-			mk_wrd_array(s, strs_array, c);
+			mk_wrd_array(s, &strs_array, c);
 		return (strs_array);
 	}
 	return (NULL);
