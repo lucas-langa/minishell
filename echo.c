@@ -15,10 +15,10 @@
 void	echo_str(char **av, char **env)
 {
 	int		i;
-	char	*temp;
+	//char	*temp;
 
 	i = 0;
-	temp = NULL;
+	//temp = NULL;
 	if (!av[1])
 		return (ft_putchar('\n'));
 	if (av[1][0] == '$')

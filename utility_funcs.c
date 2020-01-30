@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utility_funcs.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llanga <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zmadi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/14 07:33:12 by llanga            #+#    #+#             */
-/*   Updated: 2018/10/14 07:43:55 by llanga           ###   ########.fr       */
+/*   Created: 2020/01/26 12:39:50 by zmadi             #+#    #+#             */
+/*   Updated: 2020/01/26 13:13:39 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,20 @@ void	fork_this(char *exe, char **av, char **envcpy)
 	int		status;
 
 	x = fork();
-	if (x > 0)
+	if (x == 0)
+	{
+		if (execvp(av[0], av) == -1)
+		{
+			perror("lsh");
+			exit(EXIT_FAILURE);
+		}
+	}
+	else if (x > 0)
 		waitpid(x, &status, 0 | WUNTRACED);
 	else if (!x)
 	{
+		if (exe == NULL)
+			ft_putendl_fd(" No such file or directory\033[0m", 2);
 		if (execve(av[0][0] == '/' ? av[0] : exe, av, envcpy) == -1)
 		{
 			ft_putstr_fd(RED, 2);
@@ -58,9 +68,6 @@ void	fork_this(char *exe, char **av, char **envcpy)
 			ft_putendl_fd(" No such file or directory\033[0m", 2);
 		}
 	}
-	else
-		ft_putendl_fd("\033[31mfork failed\033[0m", 2);
-	return ;
 }
 
 int		exec_sh_fun(char **av, char ***envcpy)
@@ -83,8 +90,6 @@ int		exec_sh_fun(char **av, char ***envcpy)
 		xecute = run_exe(*envcpy, av[0]);
 		fork_this(xecute, av, *envcpy);
 	}
-	// else
-	// 	ft_putendl_fd("\033[31mno such command\033[0m", 2);
 	xecute ? ft_strdel(&xecute) : 0;
 	return (42);
 }
@@ -113,3 +118,4 @@ char	**get_args(void)
 	}
 	return (args);
 }
+
