@@ -6,7 +6,7 @@
 /*   By: llanga <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 08:05:51 by llanga            #+#    #+#             */
-/*   Updated: 2018/10/14 08:05:55 by llanga           ###   ########.fr       */
+/*   Updated: 2020/01/31 11:28:22 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 void	echo_str(char **av, char **env)
 {
 	int		i;
-	//char	*temp;
 
 	i = 0;
-	//temp = NULL;
 	if (!av[1])
 		return (ft_putchar('\n'));
 	if (av[1][0] == '$')

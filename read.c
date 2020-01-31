@@ -6,7 +6,7 @@
 /*   By: llanga <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 08:06:00 by llanga            #+#    #+#             */
-/*   Updated: 2018/10/14 08:06:02 by llanga           ###   ########.fr       */
+/*   Updated: 2020/01/31 11:29:53 by zmadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int				main(int ac, char **av, char **env)
 	int		run;
 
 	run = 42;
-	ac--;
+	(void)ac;
 	(void)av;
 	envcp = NULL;
 	args = NULL;
@@ -39,11 +39,7 @@ int				main(int ac, char **av, char **env)
 	signal(SIGINT, &xsig_handler);
 	while (run)
 	{
-		// g_xx = 1;
-		// if (g_xx == 0)
-		// 	continue ;
-		// if (g_xx)
-			ft_putstr("$> ");
+		ft_putstr("$> ");
 		args = get_args();
 		run = exec_builtin(args, &envcp);
 		mk_2d_arr_clean(&args);

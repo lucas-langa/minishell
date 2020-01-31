@@ -7,7 +7,7 @@ FLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME) : $(SRCS) $(LFT) 
-	cc $(SRCS) $(LFT) $(FLAGS) -o minishell
+	@cc $(SRCS) $(LFT) $(FLAGS) -o minishell
 
 clean: 
 	make -C libft/ clean
