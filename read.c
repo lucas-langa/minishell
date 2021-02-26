@@ -37,6 +37,7 @@ int				main(int ac, char **av, char **env)
 	args = NULL;
 	envcp = cpy_2darr(env);
 	signal(SIGINT, &xsig_handler);
+	ft_putstr("Welcome to mini's hell, I can do most shell things pretty well ^^. Enjoy!");
 	while (run)
 	{
 		ft_putstr("$> ");
